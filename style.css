@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+:root {
+    --primary-color: crimson;
+    --secondary-color: rgb(96, 126, 126);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgb(0, 20, 34);
+    position: relative;
+    width: 800px;
+    min-height: 90vmin;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.left {
+    width: 60%;
+    padding: 20px;
+}
+
+.calendar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: gray;
+}
+
+.calendar::before,
+.calendar::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 10px;
+    height: 95%;
+    background-color: lightgray;
+    transform: translateY(-50%);
+}
+
+.calendar::before {
+    height: 90%;
+    left: 102%;
+    background-color: rgb(182, 182, 182);
+}
+
+.calendar .month {
+    width: 100%;
+    height: 20%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 7vmin;
+    align-items: center;
+    text-transform: capitalize;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.calendar .month .prev,
+.calendar .month .next {
+    cursor: pointer;
+}
+
+.calendar .weekdays {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.sunday {
+    color: var(--primary-color);
+}
+
+.calendar .weekdays div {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar .days {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    font-size: 1rem;
+    padding-bottom: 10px;
+}
+
+.calendar .days .day {
+    width: 14%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.prev-date,
+.next-date {
+    color: rgb(182, 182, 182);
+}
+
+.calendar .day:not(.prev-date, .next-date, .active):hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.calendar .days .active {
+    background-color: rgb(0, 81, 255);
+    color: white;
+    font-weight: bold;
+}
+
+.calendar .days .today {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.5em;
+}
+
+.calendar .days .today.active {
+    color: white;
+}
+
+.calendar .days .event {
+    position: relative;
+}
+
+.calendar .days .event::after {
+    content: "";
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+}
+
+.calendar .event:hover::after,
+.calendar .active.event::after {
+    background-color: white;
+}
+
+.calendar .goto-today {
+    height: 15%;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.calendar .goto-today .goto {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.calendar .goto-today .goto input {
+    border: 1px solid gray;
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+    outline: none;
+    padding: 5px 10px;
+    width: 50%;
+}
+
+.calendar .goto-today button {
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: transparent;
+    color: gray;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.calendar .goto-today button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+}
+
+.calendar .goto-today .goto button {
+    border-radius: 0 5px 5px 0;
+}
+
+
+
+
+
+
+.container .right {
+    color: white;
+    width: 40%;
+    position: relative;
+    min-height: 100%;
+}
+
+.right .today-date {
+    /* background-color: red; */
+    color: var(--secondary-color);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    text-transform: capitalize;
+}
+
+.today-date .event-day {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.today-date .event-date {
+    font-size: 1rem;
+}
+
+.events {
+    width: 100%;
+    height: 100%;
+    max-height: 50vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-heading {
+    text-align: center;
+    margin: 20px 0;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.no-event {
+    color: var(--secondary-color);
+    text-align: center;
+    margin: auto;
+}
+
+.events .event {
+    position: relative;
+    width: 95%;
+    min-height: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 30px;
+    background: linear-gradient(90deg, rgb(22, 49, 87), transparent);
+    cursor: pointer;
+}
+
+.events .event:nth-child(even) {
+    background: transparent;
+}
+
+.events .event:hover {
+    background: rgba(220, 20, 60, 0.5);
+}
+
+.events .event .title {
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.events .event .title .event-title {
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+.events .event .title i {
+    font-size: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.events .event:hover .title i,
+.events .event:hover .event-time {
+    color: white;
+}
+
+.events .event .event-time {
+    color: var(--secondary-color);
+    margin-left: 8px;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.events .event::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    opacity: 0.4;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.event:hover::after {
+    display: flex;
+}
+
+.add-event-container {
+    background-color: white;
+    color: var(--secondary-color);
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    bottom: 80px;
+    overflow: hidden;
+    max-height: 0;
+    transform: translateX(-50%);
+    transition: max-height 0.5s;
+    border-radius: 5px;
+}
+
+.add-event-container.active {
+    max-height: 400px;
+}
+
+.add-event-header {
+    border-bottom: 1px solid var(--secondary-color);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.add-event-header i {
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.add-event-header i:hover {
+    color: rgb(83, 83, 83);
+}
+
+.add-event-header .title {
+    font-size: 1.2rem;
+}
+
+.add-event-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 7px;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.add-event-body .add-event-input {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.add-event-body .add-event-input input {
+    border: none;
+    border-bottom: 1px solid rgba(136, 154, 179);
+    outline: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    color: rgb(90, 91, 109);
+
+}
+
+.add-event-body .add-event-input input:focus {
+    border-color: var(--primary-color);
+}
+
+.add-event-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px 20px 20px;
+}
+
+.add-event-footer button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(0, 70, 220);
+    color: white;
+    border: 1px solid rgb(0, 70, 220);
+}
+
+.add-event-footer button:hover {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.add-event {
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.add-event:hover {
+    color: white;
+    border-color: white;
+}
+
+.add-event i {
+    pointer-events: none;
+}
+
+
+
+
+
+@media only screen and (max-width: 700px) {
+
+    body {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .container {
+        min-height: 100vh;
+        flex-direction: column;
+        border-radius: 0;
+    }
+
+    .calendar {
+        height: 60vh;
+    }
+
+    .container .left {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container .right {
+        width: 100%;
+        height: 100%;
+    }
+
+    .calendar::before,
+    .calendar::after {
+        top: 100%;
+        left: 50%;
+        width: 97%;
+        height: 12px;
+        transform: translateX(-50%);
+    }
+
+    .calendar::before {
+        width: 94%;
+        top: calc(102%);
+    }
+
+    .events {
+        padding-bottom: 300px;
+    }
+
+    .calendar .weekdays {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-height: 500px) {
+    .container {
+        min-height: 100vmin;
+    }
+
+    .goto-today {
+        z-index: 2;
+        background-color: white;
+    }
+}
